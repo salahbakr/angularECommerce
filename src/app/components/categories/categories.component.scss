@@ -1,0 +1,9 @@
+.card {
+    max-height: 410px;
+    min-height: 410px;
+    position: relative;
+}
+
+.card:hover {
+    outline: 1px solid green;
+}

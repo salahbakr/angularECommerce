@@ -1,0 +1,63 @@
+<app-loading-animation *ngIf="isLoading"></app-loading-animation>
+<section *ngIf="!isLoading">
+    <div class="container mt-5" *ngFor="let order of orders">
+        <div class="order">
+            <div class="table-responsive p-3 bg-light-main">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"><b><i class="fa-regular fa-calendar-days"></i> Date</b></th>
+                            <th scope="col"><b><i class="fa-solid fa-truck"></i> Delivered</b></th>
+                            <th scope="col"><b><i class="fa-solid fa-coins"></i> Paid</b></th>
+                            <th scope="col"><b><i class="fa-solid fa-credit-card"></i> Payment Method</b></th>
+                            <th scope="col"><b><i class="fa-solid fa-location-dot"></i> Shipping Address</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="">
+                            <td scope="row"> {{ order.createdAt | date}} </td>
+                            <td>
+                                <p *ngIf="order.isDelivered">Delieverd</p>
+                                <p *ngIf="!order.isDelivered">Not yet</p>
+                            </td>
+                            <td>
+                                <p *ngIf="order.isPaid">Paid: {{ order.totalOrderPrice | currency: 'EGP ' }}</p>
+                                <p *ngIf="!order.isPaid">No: On delivery (cash)</p>
+                            </td>
+                            <td>{{ order.paymentMethodType }}</td>
+                            <td class="d-flex flex-column align-items-between">
+                                <p><b>Details: </b> {{ order.shippingAddress.details }} </p>
+                                <p><b>City: </b> {{ order.shippingAddress.city }} </p>
+                                <p><b>Phone: </b> {{ order.shippingAddress.phone }} </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="details-btn d-flex justify-content-center align-items-center" style="z-index: 10;" role="button" (click)="toggleDetails(itemsDiv, arrowIcon)">
+                <i class="fa-solid fa-chevron-down" #arrowIcon></i>
+            </div>
+            <div class="order-details p-3 bg-light-main rounded shadow" style="opacity: 0;" #itemsDiv>
+                <div class="row g-3">
+                    <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 justify-content-space" *ngFor="let item of order.cartItems">
+                        <div class="card p-3 shadow">
+                            <div class="product-details h-100 d-flex flex-column justify-content-between" role="button" [routerLink]="['/details', item.product._id]">
+                                <img class="w-100" height="250" [src]="item.product.imageCover" alt="">
+                                <h4 class="text-main h6"> {{ item.product.category.name }} </h4>
+                                <h3 class="h5"> {{ item.product.title }} </h3>
+                                <h3 class="h5 text-main">Ordered Quantity: {{ item.count }} </h3>
+                                <div class="info">
+                                    <span> {{ item.price | currency: 'EGP ' }} </span>
+                                    <span class="rating">
+                                        <i class="fas fa-star"></i> 
+                                        <span class="text-black">{{ item.product.ratingsAverage }}</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

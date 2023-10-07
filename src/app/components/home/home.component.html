@@ -1,0 +1,60 @@
+<app-loading-animation *ngIf="isLoading"></app-loading-animation>
+<section *ngIf="!isLoading">
+    <div class="row g-0">
+        <div class="col-md-8">
+            <owl-carousel-o [options]="mainSlider" >
+                <ng-template carouselSlide><img class="w-100" height="400" src="./assets/images/main-slider-1.jpeg" alt=""></ng-template>  
+                <ng-template carouselSlide><img class="w-100" height="400" src="./assets/images/main-slider-2.jpeg" alt=""></ng-template>  
+                <ng-template carouselSlide><img class="w-100" height="400" src="./assets/images/main-slider-3.jpeg" alt=""></ng-template> 
+              </owl-carousel-o>
+        </div>
+        <div class="col-md-4">
+            <img class="w-100" height="200" src="./assets/images/slide-1.jpeg" alt="">
+            <img class="w-100" height="200" src="./assets/images/slide-2.jpeg" alt="">
+        </div>
+    </div>
+</section>
+
+<section *ngIf="!isLoading">
+    <div class="carousel m-auto">
+        <h2 class="text-center">Shop Categories</h2>
+        <owl-carousel-o [options]="catSlider" >
+
+            <ng-container *ngFor="let category of categories">
+              <ng-template carouselSlide>
+                <div class="m-2 p-2">
+                    <img class="object-fit-cover w-100" height="300" [src]="category.image" [alt]="category.name" [title]="category.name">
+                    <h3 class="h6 text-main mt-1"> {{ category.name }} </h3>
+                </div>
+
+              </ng-template>
+            </ng-container>
+        
+          </owl-carousel-o>
+    </div>
+</section>
+
+<section class="mt-2">
+    <input type="text" class="form-control w-50 mx-auto" placeholder="search..." [(ngModel)]="searchTerm">
+    <div class="row g-3 mt-2">
+        <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 justify-content-space" *ngFor="let product of productsData | search: searchTerm">
+            <div class="card p-3 shadow">
+                <div class="product-details h-100 d-flex flex-column justify-content-between" role="button" [routerLink]="['/details', product._id]">
+                    <img class="w-100" height="250" [src]="product.imageCover" alt="">
+                    <h4 class="text-main h6"> {{ product.category.name }} </h4>
+                    <h3 class="h5"> {{ product.title | cutText }} </h3>
+                    <div class="info">
+                        <span> {{ product.price | currency:'EGP' }} </span>
+                        <span class="rating">
+                            <i class="fas fa-star"></i> 
+                            <span class="text-black">{{ product.ratingsAverage }}</span>
+                        </span>
+                    </div>
+                </div>
+                <i class="heart fa-solid fa-heart fa-2x" role="button" #heart (click)="addProductToWishList(product._id, heart)" *ngIf="!wishListedItems.includes(product._id)" [style.color]="wishListedItems.includes(product._id) ? 'red' : ''"></i>
+                <i class="heart fa-solid fa-heart fa-2x" role="button" #heart (click)="deleteProductFromWishList(product._id, heart)" *ngIf="wishListedItems.includes(product._id)" [style.color]="wishListedItems.includes(product._id) ? 'red' : ''"></i>
+                <button class="main-btn w-75 mt-2" (click)="addProductToCart(product._id, btn, span)" #btn><span #span>+Add To Cart</span></button>
+            </div>
+        </div>
+    </div>
+</section>

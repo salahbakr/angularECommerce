@@ -1,0 +1,23 @@
+footer {
+    margin-top: 30px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding:40px;
+    background-color: #efefef;
+    z-index: -1000;
+}
+
+.partners {
+    width: 32vw;
+}
+
+.download {
+    width: 30vw;
+}
+
+button {
+    margin-top: 5px;
+    width: fit-content;
+}

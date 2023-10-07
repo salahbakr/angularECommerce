@@ -1,0 +1,35 @@
+<div class="container mt-5 d-flex justify-content-center align-items-center">
+    <form class="bg-light-main shadow w-50" [formGroup]="loginForm" (ngSubmit)="handleLogin()">
+
+        <div class="form-item">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" formControlName="email">
+
+            <div class="alert alert-danger" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors">
+                <p *ngIf="loginForm.get('email')?.getError('required')">Email is required</p>
+                <p *ngIf="loginForm.get('email')?.getError('email')">Email is not valid</p>
+            </div>
+
+        </div>
+
+        <div class="form-item">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" formControlName="password">
+
+            <div class="alert alert-danger" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors">
+                <p *ngIf="loginForm.get('password')?.getError('required')">Password is required</p>
+                <p *ngIf="loginForm.get('password')?.getError('pattern')">Password must be at least 6 characters</p>
+            </div>
+
+        </div>
+
+        <button type="submit" class="main-btn my-3" [disabled]="loginForm.invalid" [ngClass]="{'loading': isLoading}"><span [ngClass]="{'hide-text': isLoading}">Login</span></button>
+        <div>
+            <a routerLink="/password-reset">Forgot Password?</a>
+        </div>
+        <div class="alert alert-danger" *ngIf="errorMsg">
+            <p> {{ errorMsg }} </p>
+        </div>
+
+    </form>
+</div>

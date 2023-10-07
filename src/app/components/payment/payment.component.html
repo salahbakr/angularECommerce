@@ -1,0 +1,24 @@
+<section class="d-flex justify-content-center align-items-center mt-5">
+    <form [formGroup]="checkForm" (ngSubmit)="handleForm()" class="w-50 bg-light-main rounded shadow p-2">
+        <div class="form-group">
+            <label for="details">Details</label>
+            <input type="text" class="form-control" formControlName="details">
+        </div>
+        <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" class="form-control" formControlName="city">
+            <div *ngIf="checkForm.get('city')?.touched && checkForm.get('city')?.getError('required')">
+                <p class="alert alert-danger">City field is required</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" class="form-control" formControlName="phone">
+            <div *ngIf="checkForm.get('phone')?.touched && checkForm.get('phone')?.errors">
+                <p class="alert alert-danger" *ngIf="checkForm.get('phone')?.getError('required')">Phone field is required</p>
+                <p class="alert alert-danger" *ngIf="checkForm.get('phone')?.getError('pattern')">Egyptian phone number is required</p>
+            </div>
+        </div>
+        <button type="submit" class="main-btn my-2" [class.loading]="isLoading" [disabled]="checkForm.invalid"><span [class.hide-text]="isLoading">Check Out</span></button>
+    </form>
+</section>

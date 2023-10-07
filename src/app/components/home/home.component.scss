@@ -1,0 +1,56 @@
+.info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card {
+    max-height: 410px;
+    min-height: 410px;
+    position: relative;
+}
+
+.card button {
+    opacity: 0;
+    position: absolute;
+    bottom: -15px;
+    right: 50%;
+    right: 30px;
+    transition: 0.5s;
+}
+
+.card:hover button {
+    opacity: 1;
+}
+
+.card:hover {
+    outline: 1px solid green;
+}
+
+@media (max-width: 575px) {
+    .card {
+        margin: 0 auto;
+        width: 250px;
+        height: 450px;
+        position: relative;
+    }
+}
+
+.heart {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 5px;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.card:hover .heart {
+    opacity: 1;
+}
+
+.carousel {
+    width: 80%;
+    height: 20%;
+}

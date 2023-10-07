@@ -1,0 +1,25 @@
+<app-loading-animation *ngIf="loading"></app-loading-animation>
+<section class="mt-2" *ngIf="!loading">
+    <input type="text" class="form-control w-50 mx-auto" placeholder="search..." [(ngModel)]="searchTerm">
+    <div class="row g-3 mt-2">
+        <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 justify-content-space" *ngFor="let product of products | search: searchTerm">
+            <div class="card p-3 shadow">
+                <div class="product-details h-100 d-flex flex-column justify-content-between" role="button" [routerLink]="['/details', product._id]">
+                    <img class="w-100" height="250" [src]="product.imageCover" alt="">
+                    <h4 class="text-main h6"> {{ product.category.name }} </h4>
+                    <h3 class="h5"> {{ product.title | cutText }} </h3>
+                    <div class="info">
+                        <span> {{ product.price | currency:'EGP' }} </span>
+                        <span class="rating">
+                            <i class="fas fa-star"></i> 
+                            <span class="text-black">{{ product.ratingsAverage }}</span>
+                        </span>
+                    </div>
+                </div>
+                <i class="heart fa-solid fa-heart fa-2x" role="button" #heart (click)="addProductToWishList(product._id, heart)" *ngIf="!wishListedItems.includes(product._id)" [style.color]="wishListedItems.includes(product._id) ? 'red' : ''"></i>
+                <i class="heart fa-solid fa-heart fa-2x" role="button" #heart (click)="deleteProductFromWishList(product._id, heart)" *ngIf="wishListedItems.includes(product._id)" [style.color]="wishListedItems.includes(product._id) ? 'red' : ''"></i>
+                <button class="main-btn w-75 mt-2" (click)="addProductToCart(product._id, btn, span)" #btn><span #span>+Add To Cart</span></button>
+            </div>
+        </div>
+    </div>
+</section>

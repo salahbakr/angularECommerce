@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/">
+            <img src="./assets/images/freshcart-logo.svg" alt="">
+        </a>
+        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active-link" routerLink="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active-link" routerLink="/products">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active-link" routerLink="/categories">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active-link" routerLink="/brands">Brands</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active-link" routerLink="/wishlist">Wish List</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto mt-2 mt-lg-0 align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link position-relative" routerLink="/cart">
+                        <i class="fas fa-cart-shopping fa-2x text-main"></i>
+                        <span class="position-absolute top-0 end-0"> {{ cartNumber }} </span>
+                    </a>
+                </li>
+                <li class="nav-item d-flex gap-3 align-items-center me-3">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-whatsapp"></i>
+                    <i class="fab fa-linkedin"></i>
+                </li>
+                <li class="nav-item mt-2" (click)="signOut()">
+                    <p role="button">Sign Out</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

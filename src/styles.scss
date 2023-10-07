@@ -1,0 +1,100 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;600&family=Encode+Sans+Expanded:wght@300&family=Noto+Sans+JP:wght@100;200&family=Poppins:ital,wght@0,400;1,300&family=Roboto:wght@400;500&display=swap');
+$main-color: #0aad0a;
+$light-color: #f0f3f2;
+$shadow: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px,
+    rgba(145, 158, 171, 0.14) 0px 4px 5px 0px,
+    rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
+$rating-color: #ffc908;
+$main-transition: 0.8s;
+
+body {
+    position: relative;
+    padding-bottom: 600px;
+    min-height: 100vh;
+    font-family: 'Encode Sans Expanded', sans-serif;
+}
+
+.green-background {
+    background-color: $main-color;
+}
+
+.rating {
+    color: $rating-color;
+}
+
+.text-main {
+    color: $main-color;
+}
+
+.shadow {
+    box-shadow: $shadow;
+}
+
+.bg-light-main {
+    background-color: $light-color;
+}
+
+.font-sm {
+    font-size: 12px;
+}
+
+.main-btn {
+    position: relative;
+    background-color: $main-color;
+    color: #fff;
+    padding: 4px 6px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: unset;
+}
+
+.main-btn:disabled {
+    background-color: #04580450;
+    color: #ffffff60;
+    cursor: not-allowed;
+}
+
+.active-link {
+    transition: $main-transition;
+    background-color: $main-color;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.main-btn::after {
+    content: "";
+    position: absolute;
+    border: 6px solid;
+    border: 5px solid transparent;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right:0;
+    margin: auto;
+    width: 25px;
+    height: 25px;
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s ease infinite;
+    display: none;
+}
+
+.hide-text {
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s;
+}
+
+.main-btn.loading::after {
+    display: block;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0turn);
+    }
+    to {
+        transform: rotate(1turn);
+    }
+}

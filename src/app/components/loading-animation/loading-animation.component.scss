@@ -1,0 +1,52 @@
+div:nth-child(1) {
+    height: 100px;
+    width: 100px;
+    box-sizing: border-box;
+    border: 8px solid green;
+    background-color: white;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: -120px;
+    border-radius: 50%;
+    animation: move1 1s infinite;
+}
+
+@keyframes move1 {
+    50% {
+        left:120px;
+        z-index: 0;
+    }
+    51% {
+        z-index: 2;
+    }
+    100% {
+        left: -120px;
+        z-index: 2;
+    }
+}
+
+div:nth-child(2) {
+    height: 100px;
+    width: 100px;
+    background-color: green;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 120px;
+    right: 0;
+    border-radius: 50%;
+    animation: move2 1s infinite;
+}
+
+@keyframes move2 {
+    50% {
+        left: -120px;
+    }
+    100% {
+        left: 120px;
+    }
+}
